@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.bg-color{
+    background: #014036;
+}
+.button-bg{
+    background: #8aeb60;
+    color: #014036;
+}
+.text{
+    color: #f5f5f5;
+}
