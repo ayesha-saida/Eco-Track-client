@@ -1,6 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router'
+import auth from '../firebase/firebase.config';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
         <div className="navbar shadow-sm bg-color text">
   <div className="navbar-start">
@@ -23,24 +35,24 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
-           <li><a>Home</a></li>
-        <li><a>Issues</a></li>
-        <li><a>All Issues</a></li>
-        <li><a>Add Issues</a></li>
-        <li><a> My Issues </a></li>
-        <li><a>My Contribution </a></li>
+           <li><Link to={'/'}>Home</Link></li>
+        <li><Link to={'/issues'}>Issues</Link></li>
+        <li><Link to={'/all-issues'}>All Issues</Link></li>
+        <li><Link to={'/add-issues'}>Add Issues</Link></li>
+        <li><Link to={'/my-issues'}> My Issues </Link></li>
+        <li><Link to={'/my-contribution'}>My Contribution </Link></li>
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
-    <a className="btn shadow-none border-none button-bg"> Login</a>
-    <a className="btn shadow-none border-none button-bg">  Register</a>
-     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+{user? (<Link to={'/my-profile'} tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src={` ${user? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" }`}  />
         </div>
-      </div>
+      </Link> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg"> Login</Link>
+    <Link to={'/register'} className="btn shadow-none border-none button-bg">  Register</Link> </> ) } 
+
   </div>
 </div>
 
