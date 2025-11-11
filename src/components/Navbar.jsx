@@ -23,7 +23,7 @@ const Navbar = () => {
 });
   }
   return (
-        <div className="navbar shadow-sm bg-color text">
+        <div className="navbar shadow-sm bg-color text nav">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,31 +31,32 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex="-1"
-        className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
-            {user? (<> <li> <Link to={'/'}>Home</Link> </li>
-        <li><Link to={'/issues'}>Issues</Link></li>
-        <li><Link to={'/all-issues'}>All Issues</Link></li>
-        <li><Link to={'/add-issues'}>Add Issues</Link></li>
-        <li><Link to={'/my-issues'}> My Issues </Link></li>
-        <li><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li> <Link to={'/'}>Home</Link> </li>
-        <li><Link to={'/issues'}>Issues</Link></li> </>) }
+        className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow">
+            {user? (<> <li className='text-[#014036]'> <Link to={'/'}>Home</Link> </li>
+        <li className='text-[#014036]'><Link to={'/issues'}>Issues</Link></li>
+        <li className='text-[#014036]'><Link to={'/all-issues'}>All Issues</Link></li>
+        <li className='text-[#014036]'><Link to={'/add-issues'}>Add Issues</Link></li>
+        <li className='text-[#014036]'><Link to={'/my-issues'}> My Issues </Link></li>
+        <li className='text-[#014036]'><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li className='text-[#014036]'> <Link to={'/'}>Home</Link> </li>
+        <li className='text-[#014036]'><Link to={'/issues'}>Issues</Link></li> </>) }
       </ul>     
     </div>
-    <div className='w-10 '>
- <img src={logo} alt="logo" className='w-full lg:ml-7 ml-3' />
-   {/* <a className="btn btn-ghost text-2xl">Eco Track</a> */}
-    </div>
+  <div className="flex items-center space-x-3">
+  <img src={logo} alt="logo" className="w-10 lg:w-12 lg:ml-7 " />
+  <p className="font-semibold lg:text-2xl text-lg sm:text-sm">Eco Track</p>
+</div>
+
    
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
-        {user? (<> <li> <Link to={'/'}>Home</Link> </li>
-        <li><Link to={'/issues'}>Issues</Link></li>
-        <li><Link to={'/all-issues'}>All Issues</Link></li>
-        <li><Link to={'/add-issues'}>Add Issues</Link></li>
-        <li><Link to={'/my-issues'}> My Issues </Link></li>
-        <li><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li> <Link to={'/'}>Home</Link> </li>
-        <li><Link to={'/issues'}>Issues</Link></li> </>) }
+        {user? (<> <li className="hover:underline"> <Link to={'/'}>Home</Link> </li>
+        <li className="hover:underline"> <Link to={'/issues'}>Issues</Link></li>
+        <li className="hover:underline"><Link to={'/all-issues'}>All Issues</Link></li>
+        <li className="hover:underline"><Link to={'/add-issues'}>Add Issues</Link></li>
+        <li className="hover:underline"><Link to={'/my-issues'}> My Issues </Link></li>
+        <li className="hover:underline"><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li  className="hover:underline"> <Link to={'/'}>Home</Link> </li>
+        <li className="hover:underline"><Link to={'/issues'}>Issues</Link></li> </>) }
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
@@ -75,7 +76,6 @@ const Navbar = () => {
       </div>
     </> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</Link>
     <Link to={'/register'} className="btn shadow-none border-none button-bg lg:mr-6 mr-2">  Register</Link> </> ) } 
-
   </div>
 </div>
 
