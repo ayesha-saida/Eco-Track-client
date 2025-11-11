@@ -3,7 +3,6 @@ import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import MyProfile from "../pages/MyProfile";
 import AddIsuues from "../pages/AddIsuues";
 import MyIssues from "../pages/MyIssues";
 import Issues from "../pages/Issues";
@@ -26,10 +25,6 @@ const router = createBrowserRouter([
    {
     path: "/login",
     element: <Login />   ,
-        },
-   {
-    path: "/my-profile",
-    element: <MyProfile />  ,
         },
    {
     path: "/add-issues",

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router';
 import  {FcGoogle}  from "react-icons/fc";
 import auth from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
-import { successToast } from '../components/ToastContainer';
+import { defaultToast, successToast } from '../components/ToastContainer';
 
 const provider = new GoogleAuthProvider();
 
@@ -42,25 +42,55 @@ const handleRegister = (e) => {
     setUser({...user, displayName: name, photoURL: photoURL})
 }).catch((error) => {
  console.log(error)
- 
 });
     
    console.log(res)
    successToast('signup successfull')
    
   })
-  .catch((error) => {
-    console.log(error)
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage)
+  .catch((e) => {
+    console.log(e)
+    const errorCode = e.code;
+    const errorMessage = e.message;
+     if (errorCode === "auth/email-already-in-use") {
+          defaultToast(
+            "User already exists in the database"
+          );
+        } else if (errorCode === "auth/weak-password") {
+         defaultToast("You have to provide atleast 6 digit password");
+        } else if (errorCode === "auth/invalid-email") {
+         defaultToast("Invalid email format. Please check your email.");
+        } else if (errorCode === "auth/user-not-found") {
+          defaultToast("User not found. Please sign up first.");
+        } else if (errorCode === "auth/wrong-password") {
+          defaultToast("Wrong password. Please try again.");
+        } else if (errorCode === "auth/user-disabled") {
+         defaultToast("This user account has been disabled.");
+        } else if (errorCode === "auth/too-many-requests") {
+          defaultToast("Too many attempts. Please try again later.");
+        } else if (errorCode === "auth/operation-not-allowed") {
+          defaultToast("Operation not allowed. Please contact support.");
+        } else if (errorCode === "auth/network-request-failed") {
+          defaultToast("Network error. Please check your connection.");
+        } else {
+          defaultToast(errorMessage || "An unexpected error occurred.");
+        }
   });
 
   } 
   const handleGoogleSignIn = () => {
    signInWithPopup(auth, provider)
   .then((result) => {
-    
+    const user = result.user
+    /* update profile before setting user*/
+    updateProfile(auth.currentUser, {
+  displayName: user.name, photoURL: user.photoURL
+}).then(() => {
+    setUser({...user, displayName: user.name, photoURL: user.photoURL})
+}).catch((error) => {
+ console.log(error)
+});
+   successToast('signup successfull')
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     //const user = result.user;
@@ -70,13 +100,15 @@ const handleRegister = (e) => {
     console.log(error)
     const errorCode = error.code;
     const errorMessage = error.message;
+    defaultToast(errorMessage)
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
   }
+  if (user) return <Navigate to="/" />;
   return (
     <div className='min-h-screen mx-auto'>
-    {user?  <Navigate to={'/'} /> : ( <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  
+    <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
 
   <div>
@@ -104,7 +136,7 @@ const handleRegister = (e) => {
         </button>
   <p className='pt-2 text-center'>Already have an account? <Link to={'/login'} className='underline hover:text-blue-500'> Login </Link> </p>
 </fieldset>
-</form>)}
+</form>
     </div>
   )
 }

@@ -17,14 +17,14 @@ const Slider = () => {
   }, [])
 
     return(
-        <div className=" w-11/12 mx-auto pt-5 flex items-center justify-center relative">
+        <div className="lg:w-[1200px] lg:h-[500px] w-11/12 mx-auto  flex items-center justify-center relative">
       
         {/* Image with fade transition */}
       <img
         key={index} // key triggers re-render for animation
         src={images[index]}
         alt={`Slide ${index + 1}`}
-        className={`w-[500px] h-[300px] object-cover rounded-lg shadow-lg transition-opacity duration-700 ease-in-out ${
+        className={`lg:w-auto lg:h-[300px] object-cover rounded-lg shadow-lg transition-opacity duration-700 ease-in-out ${
           fade ? "opacity-100" : "opacity-0"
         }`}
       />

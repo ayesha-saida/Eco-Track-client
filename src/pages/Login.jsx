@@ -1,13 +1,14 @@
-import { signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { FcGoogle } from 'react-icons/fc';
-import { successToast } from '../components/ToastContainer';
+import { defaultToast, successToast } from '../components/ToastContainer';
+
+ const provider = new GoogleAuthProvider();
 
 const Login = () => {
-    const [user, setUser] = useState(null)
- 
+    const [user, setUser] = useState(null) 
  const handleLogin = (e) => {
       e.preventDefault()
       const email = e.target.email.value;
@@ -29,23 +30,32 @@ const Login = () => {
   });
   
     } 
-    const handleGoogleSignIn = () => {
-     signInWithPopup(auth, provider)
-    .then((result) => {
-      
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      //const user = result.user;
-      console.log(result)
-     
-    }).catch((error) => {
-      console.log(error)
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
-    }
+ const handleGoogleSignIn = () => {
+   signInWithPopup(auth, provider)
+  .then((result) => {
+    const user = result.user
+    /* update profile before setting user*/
+    updateProfile(auth.currentUser, {
+  displayName: user.displayName, photoURL: user.photoURL
+}).then(() => {
+    setUser({...user, displayName: user.displayName, photoURL: user.photoURL})
+}).catch((error) => {
+ console.log(error)
+});
+   successToast('signup successfull')
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    console.log(result)
+   
+  }).catch((error) => {
+    console.log(error)
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    defaultToast(errorMessage)
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+  });
+  }   
   if (user) return <Navigate to="/" />;
   return (
     <div className='min-h-screen mx-auto'>
@@ -65,7 +75,7 @@ const Login = () => {
             className="btn bg-white rounded-full text-black border-[#e5e5e5]"
           >
            <FcGoogle />
-            Register with Google
+            Login with Google
           </button>
   <p className='pt-2 text-center'>Don't have an account? <Link to={'/register'} className='underline hover:text-blue-500'> Register </Link> </p>
 </fieldset>

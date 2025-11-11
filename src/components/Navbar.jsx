@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import auth from '../firebase/firebase.config';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { successToast } from './ToastContainer';
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -12,7 +13,14 @@ const Navbar = () => {
     });
     return () => unsubscribe();
   }, []);
-
+ 
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+  successToast('Logout successful')
+}).catch((error) => {
+  console.log(error)
+});
+  }
   return (
         <div className="navbar shadow-sm bg-color text">
   <div className="navbar-start">
@@ -23,34 +31,44 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Home</a></li>
-        <li><a>Issues</a></li>
-        <li><a>All Issues</a></li>
-        <li><a>Add Issues</a></li>
-        <li><a> My Issues </a></li>
-        <li><a>My Contribution </a></li>
+            {user? (<> <li> <Link to={'/'}>Home</Link> </li>
+        <li><Link to={'/issues'}>Issues</Link></li>
+        <li><Link to={'/all-issues'}>All Issues</Link></li>
+        <li><Link to={'/add-issues'}>Add Issues</Link></li>
+        <li><Link to={'/my-issues'}> My Issues </Link></li>
+        <li><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li> <Link to={'/'}>Home</Link> </li>
+        <li><Link to={'/issues'}>Issues</Link></li> </>) }
       </ul>     
     </div>
     <a className="btn btn-ghost text-2xl">Eco Track</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
-           <li><Link to={'/'}>Home</Link></li>
+        {user? (<> <li> <Link to={'/'}>Home</Link> </li>
         <li><Link to={'/issues'}>Issues</Link></li>
         <li><Link to={'/all-issues'}>All Issues</Link></li>
         <li><Link to={'/add-issues'}>Add Issues</Link></li>
         <li><Link to={'/my-issues'}> My Issues </Link></li>
-        <li><Link to={'/my-contribution'}>My Contribution </Link></li>
+        <li><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li> <Link to={'/'}>Home</Link> </li>
+        <li><Link to={'/issues'}>Issues</Link></li> </>) }
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
-{user? (<Link to={'/my-profile'} tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+{user? ( <>  <div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src={` ${user? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" }`}  />
+            src={user? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" }  />
         </div>
-      </Link> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg"> Login</Link>
+      </div>
+      <ul
+        tabIndex="-1"
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li><a className='btn button-bg justify-center text-lg text-[#014036] text-center' onClick={handleLogout}>Logout</a></li>
+      </ul>
+      </div>
+    </> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg"> Login</Link>
     <Link to={'/register'} className="btn shadow-none border-none button-bg">  Register</Link> </> ) } 
 
   </div>
