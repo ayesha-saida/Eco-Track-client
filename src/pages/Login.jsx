@@ -30,31 +30,18 @@ const Login = () => {
   });
   
     } 
- const handleGoogleSignIn = () => {
-   signInWithPopup(auth, provider)
-  .then((result) => {
-    const user = result.user
-    /* update profile before setting user*/
-    updateProfile(auth.currentUser, {
-  displayName: user.displayName, photoURL: user.photoURL
-}).then(() => {
-    setUser({...user, displayName: user.displayName, photoURL: user.photoURL})
-}).catch((error) => {
- console.log(error)
-});
-   successToast('signup successfull')
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    console.log(result)
-   
-  }).catch((error) => {
-    console.log(error)
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    defaultToast(errorMessage)
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  });
+ const handleGoogleSignIn = async() => {
+   try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    setUser(user);
+    successToast('Login successful with Google');
+    console.log('Google Sign-In result:', result);
+  } catch (error) {
+    console.error('Google Sign-In Error:', error.code, error.message, error.customData);
+    defaultToast(error.message);
+  }
   }   
   if (user) return <Navigate to="/" />;
   return (
@@ -71,6 +58,7 @@ const Login = () => {
  <button type='submit' className="btn bg-[#8aeb60] mt-4">Login</button>
   <p className='text-center text-gray-500'>or</p>
    <button
+    type="button" 
             onClick={handleGoogleSignIn}
             className="btn bg-white rounded-full text-black border-[#e5e5e5]"
           >

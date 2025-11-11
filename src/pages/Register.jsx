@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, Navigate } from 'react-router';
+import React from 'react'
+import { Link, useNavigate } from 'react-router';
 import  {FcGoogle}  from "react-icons/fc";
 import auth from '../firebase/firebase.config';
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
@@ -9,8 +9,8 @@ import { defaultToast, successToast } from '../components/ToastContainer';
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
-  const [user, setUser] = useState(null)
-const handleRegister = (e) => {
+  const navigate = useNavigate();
+const handleRegister = async(e) => {
     e.preventDefault()
     const name = e.target.name.value;
     const photoURL = e.target.photoURL.value;
@@ -31,24 +31,19 @@ const handleRegister = (e) => {
       );
       return;
     }
+try { 
+   await createUserWithEmailAndPassword(auth, email, password)
 
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((res) => {
-    const user = res.user
-    /* update profile before setting user*/
-    updateProfile(auth.currentUser, {
-  displayName: name, photoURL: photoURL
-}).then(() => {
-    setUser({...user, displayName: name, photoURL: photoURL})
-}).catch((error) => {
- console.log(error)
-});
-    
-   console.log(res)
-   successToast('signup successfull')
-   
-  })
-  .catch((e) => {
+  await  updateProfile(auth.currentUser, {
+  displayName: name,  photoURL: photoURL
+})
+ await auth.currentUser.reload(); 
+ 
+   successToast('Registration successfull!')  
+   navigate('/');
+  }
+
+  catch(e)  {
     console.log(e)
     const errorCode = e.code;
     const errorMessage = e.message;
@@ -75,25 +70,16 @@ const handleRegister = (e) => {
         } else {
           defaultToast(errorMessage || "An unexpected error occurred.");
         }
-  });
+  };
 
   } 
   const handleGoogleSignIn = () => {
    signInWithPopup(auth, provider)
   .then((result) => {
-    const user = result.user
-    /* update profile before setting user*/
-    updateProfile(auth.currentUser, {
-  displayName: user.name, photoURL: user.photoURL
-}).then(() => {
-    setUser({...user, displayName: user.name, photoURL: user.photoURL})
-}).catch((error) => {
- console.log(error)
-});
-   successToast('signup successfull')
+   successToast('Registration successful with Google');
+   navigate('/');
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    //const user = result.user;
     console.log(result)
    
   }).catch((error) => {
@@ -105,7 +91,7 @@ const handleRegister = (e) => {
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
   }
-  if (user) return <Navigate to="/" />;
+ 
   return (
     <div className='min-h-screen mx-auto'>
     <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  
