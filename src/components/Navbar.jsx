@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import auth from '../firebase/firebase.config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { successToast } from './ToastContainer';
+import logo from '../asset/eco_logo.png'
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -40,7 +41,11 @@ const Navbar = () => {
         <li><Link to={'/issues'}>Issues</Link></li> </>) }
       </ul>     
     </div>
-    <a className="btn btn-ghost text-2xl">Eco Track</a>
+    <div className='w-10 '>
+ <img src={logo} alt="logo" className='w-full lg:ml-7 ml-3' />
+   {/* <a className="btn btn-ghost text-2xl">Eco Track</a> */}
+    </div>
+   
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
@@ -68,8 +73,8 @@ const Navbar = () => {
         <li><a className='btn button-bg justify-center text-lg text-[#014036] text-center' onClick={handleLogout}>Logout</a></li>
       </ul>
       </div>
-    </> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg"> Login</Link>
-    <Link to={'/register'} className="btn shadow-none border-none button-bg">  Register</Link> </> ) } 
+    </> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</Link>
+    <Link to={'/register'} className="btn shadow-none border-none button-bg lg:mr-6 mr-2">  Register</Link> </> ) } 
 
   </div>
 </div>
