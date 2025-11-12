@@ -4,6 +4,7 @@ import auth from '../firebase/firebase.config';
 import { onAuthStateChanged } from 'firebase/auth';
 import Category from '../components/Category';
 import Complain from '../components/Complain';
+import States from '../components/States';
 
 const Home = () => {
  const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ const Home = () => {
       <Slider></Slider>
       <Category></Category>
       <Complain></Complain>
+      <States></States>
     </div>
   )
 }
