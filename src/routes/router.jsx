@@ -3,12 +3,14 @@ import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import AddIsuues from "../pages/AddIsuues";
+import AddIssues from "../pages/AddIssues";
 import MyIssues from "../pages/MyIssues";
 import Issues from "../pages/Issues";
 import All_Issues from "../pages/All_Issues";
 import MyContribution from "../pages/MyContribution";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRouter from "./PrivateRouter";
+import IssueDetails from "../pages/IssueDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,15 +31,19 @@ const router = createBrowserRouter([
         },
    {
     path: "/add-issues",
-    element: <AddIsuues /> ,
+    element: <PrivateRouter> <AddIssues /> </PrivateRouter>  ,
         },
    {
     path: "/my-issues",
-    element: <MyIssues /> ,
+    element: <PrivateRouter> <MyIssues /> </PrivateRouter>,
         },
    {
     path: "/issues",
     element: <Issues /> ,
+        },
+   {
+    path: "/issue-details",
+    element: <PrivateRouter> <IssueDetails /> </PrivateRouter> ,
         },
    {
     path: "/all-issues",
@@ -45,7 +51,7 @@ const router = createBrowserRouter([
         },
    {
     path: "/my-contribution",
-    element: <MyContribution /> 
+    element: <PrivateRouter> <MyContribution /> </PrivateRouter>,
         },
     ]
   },

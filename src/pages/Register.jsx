@@ -1,16 +1,32 @@
-import React from 'react'
+import React, { use } from 'react'
 import { Link, useNavigate } from 'react-router';
 import  {FcGoogle}  from "react-icons/fc";
 import auth from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { signInWithPopup, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
 import { defaultToast, successToast } from '../components/ToastContainer';
+import { AuthContext } from '../provider/AuthProvider';
 
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
+  const {createUser} = use(AuthContext)
   const navigate = useNavigate();
-const handleRegister = async(e) => {
+
+const handleRegister = (e) => {
+    e.preventDefault()
+    const name = e.target.name.value;
+    const photoURL = e.target.photoURL.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    createUser(email,password).then(res => 
+    {  console.log(res.user)}
+    ).catch(e => {
+      console.log(e)
+    })
+}
+/* const handleRegister = async(e) => {
     e.preventDefault()
     const name = e.target.name.value;
     const photoURL = e.target.photoURL.value;
@@ -19,7 +35,7 @@ const handleRegister = async(e) => {
 
   console.log({name,photoURL, email, password})
   
-     /* password validation */
+     /* password validation * /
    const regExp =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{6,}$/;
 
@@ -32,7 +48,7 @@ const handleRegister = async(e) => {
       return;
     }
 try { 
-   await createUserWithEmailAndPassword(auth, email, password)
+   await createUser( email, password)
 
   await  updateProfile(auth.currentUser, {
   displayName: name,  photoURL: photoURL
@@ -71,8 +87,8 @@ try {
           defaultToast(errorMessage || "An unexpected error occurred.");
         }
   };
-
-  } 
+*/
+  
   const handleGoogleSignIn = () => {
    signInWithPopup(auth, provider)
   .then((result) => {

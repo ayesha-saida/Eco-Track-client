@@ -17,6 +17,11 @@
 .btn-ghost:hover{
      background:none
 }
+
+.reverse-bg-color{
+   background: #026B50;
+    color: #f5f5f5;
+}
 /*
 Teal Green	#026B50	Slightly lighter, still rich and dark.
 Medium Green	#037C5C	Noticeably lighter but not too bright.

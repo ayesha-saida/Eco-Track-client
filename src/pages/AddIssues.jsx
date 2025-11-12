@@ -1,11 +1,11 @@
 import React from 'react'
 
-const AddIsuues = ({currentUserEmail}) => {
+const AddIssues = ({currentUserEmail}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
-    //console.log('issue added')
+    console.log('e.target.value')
     
-    const newIssue = {
+   /* const newIssue = {
       title,
       category,
       location,
@@ -25,19 +25,20 @@ const AddIsuues = ({currentUserEmail}) => {
     setLocation('')
     setDescription('')
     setImage('')
-    setAmount('')
+    setAmount('') */
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="max-w-sm mx-auto border p-4 rounded-lg">
-        <h1 className='p-4 text-2xl text-center'>Add New Issue</h1>
+    <div className='max-w-sm mx-auto'>
+      <div className='py-6 '>
+        <form onSubmit={handleSubmit} className=" border p-4 rounded-lg">
+        <h1 className='p-2 text-2xl text-center'>Add New Issue</h1>
 
         {/* Issue Title */}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
           <input
             type="text"
-            value={title}
+            value={'title'}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Issue Title"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -49,7 +50,7 @@ const AddIsuues = ({currentUserEmail}) => {
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
           <select
-            value={category}
+            value={'category'}
             onChange={(e) => setCategory(e.target.value)}
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             required
@@ -67,7 +68,7 @@ const AddIsuues = ({currentUserEmail}) => {
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
           <input
             type="text"
-            value={location}
+            value={'location'}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Location"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -79,7 +80,7 @@ const AddIsuues = ({currentUserEmail}) => {
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
           <textarea
-            value={description}
+            value={'description'}
             onChange={(e) => setDescription(e.target.value)}
             rows="4"
             placeholder="Describe the issue"
@@ -93,7 +94,7 @@ const AddIsuues = ({currentUserEmail}) => {
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL</label>
           <input
             type="url"
-            value={image}
+            value={'image'}
             onChange={(e) => setImage(e.target.value)}
             placeholder="Image URL"
             className="col-span-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -105,7 +106,7 @@ const AddIsuues = ({currentUserEmail}) => {
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suggested Fix Budget</label>
           <input
             type="number"
-            value={amount}
+            value={'amount'}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -129,9 +130,11 @@ const AddIsuues = ({currentUserEmail}) => {
         >
           Submit
         </button>
+    
       </form>
+      </div>
     </div>
   )
 }
 
-export default AddIsuues
+export default AddIssues

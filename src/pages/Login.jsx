@@ -1,22 +1,25 @@
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
-import React, { useState } from 'react'
+import { GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
+import React, { use, useState } from 'react'
 import { Link, Navigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { FcGoogle } from 'react-icons/fc';
 import { defaultToast, successToast } from '../components/ToastContainer';
+import { AuthContext } from '../provider/AuthProvider';
 
  const provider = new GoogleAuthProvider();
 
 const Login = () => {
     const [user, setUser] = useState(null) 
- const handleLogin = (e) => {
+    const {signInUser} = use(AuthContext)
+
+    const handleLogin = (e) => {
       e.preventDefault()
       const email = e.target.email.value;
       const password = e.target.password.value;
   
     console.log({ email, password})
   
-  signInWithEmailAndPassword(auth, email, password)
+  signInUser(email, password)
    .then((res) => {
      const user = res.user
  setUser(user)
@@ -29,7 +32,7 @@ const Login = () => {
     alert(errorMessage)
   });
   
-    } 
+    }  
  const handleGoogleSignIn = async() => {
    try {
     const result = await signInWithPopup(auth, provider);

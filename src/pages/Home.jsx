@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { use } from 'react'
 import Slider from '../components/Slider'
-import auth from '../firebase/firebase.config';
-import { onAuthStateChanged } from 'firebase/auth';
 import Category from '../components/Category';
 import Complain from '../components/Complain';
 import States from '../components/States';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Home = () => {
- const [user, setUser] = useState(null);
+  const {user} = use(AuthContext)
+   
+// const [user, setUser] = useState(null);
 
-  useEffect(() => {
+ /* useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, setUser);
     return () => unsubscribe();
-  }, []);
+  }, []); */
 
  if (user) {
     const uid = user.uid;
@@ -22,7 +23,7 @@ const Home = () => {
   }
 
   return (
-    <div className='bg-color'>
+    <div className=''>
       <Slider></Slider>
       <Category></Category>
       <Complain></Complain>

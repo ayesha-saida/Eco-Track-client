@@ -6,7 +6,7 @@ const Footer = () => {
     <div className='bg-color'>
  <footer className=" rounded-lg shadow-sm dark:bg-gray-900">
     <div className="w-full mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">         
+        <div className="sm:flex sm:items-center sm:justify-between mx-[20px]">         
   <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                 <img src={logo} className="h-10" alt=" Logo" />
                 <span className="self-center text-2xl font-semibold text whitespace-nowrap dark:text-white">Eco Track</span>
@@ -28,7 +28,7 @@ const Footer = () => {
             </ul>
         </div>
         <div>
-              <p className='text-[#7c9492] pt-2'> Eco Track is a Community Cleanliness & Issue Reporting Portal.
+              <p className='text-gray-300 lg:text-[17px] text-sm pt-2  mx-[20px]'> Eco Track is a Community Cleanliness & Issue Reporting Portal.
                 </p>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MyIssues = () => {
+const IssueDetails = () => {
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -21,4 +21,4 @@ const MyIssues = () => {
   )
 }
 
-export default MyIssues
+export default IssueDetails

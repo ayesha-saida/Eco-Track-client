@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import  { use} from 'react'
 import { Link } from 'react-router'
-import auth from '../firebase/firebase.config';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { successToast } from './ToastContainer';
 import logo from '../asset/eco_logo.png'
+import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
+const {user, signOutUser } = use(AuthContext);
 
-  useEffect(() => {
+/*  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     return () => unsubscribe();
-  }, []);
+  }, []); */
  
   const handleLogout = () => {
-    signOut(auth).then(() => {
+     signOutUser().then(() => {
   successToast('Logout successful')
 }).catch((error) => {
   console.log(error)
