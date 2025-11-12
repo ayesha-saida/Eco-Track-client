@@ -4,8 +4,8 @@ import logo from '../asset/eco_logo.png'
 const Footer = () => {
   return (
     <div className='bg-color'>
- <footer className=" rounded-lg shadow-sm dark:bg-gray-900 m-4">
-    <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+ <footer className=" rounded-lg shadow-sm dark:bg-gray-900">
+    <div className="w-full mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">         
   <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                 <img src={logo} className="h-10" alt=" Logo" />

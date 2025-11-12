@@ -8,6 +8,7 @@ import MyIssues from "../pages/MyIssues";
 import Issues from "../pages/Issues";
 import All_Issues from "../pages/All_Issues";
 import MyContribution from "../pages/MyContribution";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/*",
-    element: <h1> error page</h1>
+    element:<ErrorPage> </ErrorPage>
         },
 
 ]);
