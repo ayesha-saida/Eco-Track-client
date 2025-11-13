@@ -4,7 +4,7 @@ const Cards = ({ image, title, description }) => {
  // const img = images
   return (
    
-   <div className="card bg-base-100 w-70 hover:shadow-xl/40">
+   <div className="card w-70 bg-[#8aeb60] hover:shadow-xl/40">
   <figure>
     <img
       src={image}
