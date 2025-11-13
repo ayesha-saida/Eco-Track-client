@@ -12,6 +12,7 @@ import ErrorPage from "../pages/ErrorPage";
 import PrivateRouter from "./PrivateRouter";
 import IssueDetails from "../pages/IssueDetails";
 import Loading from "../components/Loading";
+import { combineLoader } from "../loader/combineLoader";
 
 const router = createBrowserRouter([
   {
@@ -46,13 +47,13 @@ const router = createBrowserRouter([
     path: "/all-issues",
     element: <All_Issues /> ,
     loader: () => fetch('http://localhost:3000/issues'),
-     hydrateFallbackElement: <Loading></Loading>
+     hydrateFallbackElement: <Loading /> 
         },
    {
     path: "/issue-details/:id",
     element: ( <PrivateRouter> <IssueDetails /> </PrivateRouter> ),
-    loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`),
-     hydrateFallbackElement: <Loading></Loading>
+    loader: combineLoader,
+     hydrateFallbackElement: <Loading />
         },
    {
     path: "/my-contribution",

@@ -1,6 +1,7 @@
 import React, { use } from 'react'
 import garbage from '../asset/garbage_in_public.png'
 import { AuthContext } from '../provider/AuthProvider'
+import { successToast } from './ToastContainer'
 
 const DetailCard = ({issue}) => {
      const {user} = use(AuthContext)
@@ -18,9 +19,9 @@ const formData = {
    date: new Date(),
    additional: e.target.additional.value
 }
- // console.log('form data before sending',formData)
-   fetch('http://localhost:3000/my-contribution', {
-     method: "POST",
+  console.log('form data before sending',formData)
+  fetch('http://localhost:3000/my-contribution', {
+  method: "POST",
   headers: {
      "Content-Type": "application/json",
   }, 
@@ -33,12 +34,15 @@ const formData = {
  })
  .catch(err => {
      console.log(err)
- })
+ }) 
     }
+
   return (
     <div className='py-4 flex justify-center items-center'> 
         <a href="#" className="flex flex-col items-center bg-neutral-primary-soft p-6 focus:outline-2 outline-sky-500 outline-offset-2 rounded  shadow-lg md:flex-row md:max-w-xl md:flex-row md:max-w-xl">
-    <img className="object-cover w-full rounded  h-64 md:h-auto md:w-48 mb-4 md:mb-0" src={image} alt="" />
+   <div>
+    <img className="object-cover w-full rounded  h-64 md:h-auto md:w-48 mb-4 md:mb-0" src={image} alt={title} />
+    </div> 
     <div className="flex flex-col justify-between md:p-4 leading-normal">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-heading">{title}</h5>
            <p className="text-sm text-gray-500 mt-1">{category}</p>
@@ -71,7 +75,7 @@ const formData = {
  
   {/*Issue Title */}
   <label className="label">Issue Title</label>
-  <input  type="text" className="input" value={user.email} readOnly required />
+  <input  type="text" className="input" value={title} readOnly required />
 
   {/* Amount */}
           <label className="label">Amount</label>
