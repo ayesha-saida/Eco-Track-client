@@ -2,7 +2,7 @@ import React, { use } from 'react'
 import { Link, useNavigate } from 'react-router';
 import  {FcGoogle}  from "react-icons/fc";
 import auth from '../firebase/firebase.config';
-import { signInWithPopup, updateProfile } from 'firebase/auth';
+import { signInWithPopup,  } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
 import { defaultToast, successToast } from '../components/ToastContainer';
 import { AuthContext } from '../provider/AuthProvider';
@@ -10,10 +10,10 @@ import { AuthContext } from '../provider/AuthProvider';
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
-  const {createUser} = use(AuthContext)
+  const {createUser, updateUserProfile} = use(AuthContext)
   const navigate = useNavigate();
 
-const handleRegister = (e) => {
+/*const handleRegister = (e) => {
     e.preventDefault()
     const name = e.target.name.value;
     const photoURL = e.target.photoURL.value;
@@ -25,8 +25,8 @@ const handleRegister = (e) => {
     ).catch(e => {
       console.log(e)
     })
-}
-/* const handleRegister = async(e) => {
+} */
+ const handleRegister = async(e) => {
     e.preventDefault()
     const name = e.target.name.value;
     const photoURL = e.target.photoURL.value;
@@ -35,7 +35,7 @@ const handleRegister = (e) => {
 
   console.log({name,photoURL, email, password})
   
-     /* password validation * /
+     /* password validation */
    const regExp =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{6,}$/;
 
@@ -50,10 +50,7 @@ const handleRegister = (e) => {
 try { 
    await createUser( email, password)
 
-  await  updateProfile(auth.currentUser, {
-  displayName: name,  photoURL: photoURL
-})
- await auth.currentUser.reload(); 
+  await updateUserProfile(name,photoURL) 
  
    successToast('Registration successfull!')  
    navigate('/');
@@ -83,13 +80,27 @@ try {
           defaultToast("Operation not allowed. Please contact support.");
         } else if (errorCode === "auth/network-request-failed") {
           defaultToast("Network error. Please check your connection.");
-        } else {
+        } else if (errorCode === "auth/email-already-in-use") {
+        defaultToast("User already exists in the database");
+      } else {
           defaultToast(errorMessage || "An unexpected error occurred.");
         }
   };
-*/
-  
+}
   const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        successToast("Registration successful with Google");
+        navigate("/");
+        console.log(result)
+      })
+      .catch((error) => {
+        console.error(error);
+        defaultToast(error.message);
+      });
+  };
+
+ /* const handleGoogleSignIn = () => {
    signInWithPopup(auth, provider)
   .then((result) => {
    successToast('Registration successful with Google');
@@ -106,8 +117,8 @@ try {
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
-  }
- 
+  } */
+
   return (
     <div className='min-h-screen mx-auto'>
     <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  

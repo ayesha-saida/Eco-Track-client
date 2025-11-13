@@ -1,6 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { use, useState } from 'react'
-import { Link, Navigate } from 'react-router';
+import { Link, Navigate, useNavigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { FcGoogle } from 'react-icons/fc';
 import { defaultToast, successToast } from '../components/ToastContainer';
@@ -11,7 +11,8 @@ import { AuthContext } from '../provider/AuthProvider';
 const Login = () => {
     const [user, setUser] = useState(null) 
     const {signInUser} = use(AuthContext)
-
+ const navigate = useNavigate();
+ 
     const handleLogin = (e) => {
       e.preventDefault()
       const email = e.target.email.value;
@@ -32,8 +33,21 @@ const Login = () => {
     alert(errorMessage)
   });
   
-    }  
- const handleGoogleSignIn = async() => {
+    }
+   const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        successToast("Registration successful with Google");
+        navigate("/");
+        console.log(result)
+      })
+      .catch((error) => {
+        console.error(error);
+        defaultToast(error.message);
+      });
+  };
+
+ /* const handleGoogleSignIn = async() => {
    try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
@@ -45,7 +59,7 @@ const Login = () => {
     console.error('Google Sign-In Error:', error.code, error.message, error.customData);
     defaultToast(error.message);
   }
-  }   
+  }  */ 
   if (user) return <Navigate to="/" />;
   return (
     <div className='min-h-screen mx-auto'>

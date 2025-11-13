@@ -48,6 +48,7 @@ const router = createBrowserRouter([
    {
     path: "/all-issues",
     element: <All_Issues /> ,
+    loader: () => fetch('http://localhost:3000/issues')
         },
    {
     path: "/my-contribution",

@@ -1,11 +1,134 @@
-import React from 'react'
+import React, { use } from 'react'
+import { AuthContext } from '../provider/AuthProvider'
+import { successToast } from '../components/ToastContainer'
 
-const AddIssues = ({currentUserEmail}) => {
-  const handleSubmit = (e) => {
+const AddIssues = () => {
+  const {user} = use(AuthContext)
+
+    const handleSubmit = (e) => {
+e.preventDefault()
+
+const formData = {
+     title : e.target.title.value,
+  category : e.target.category.value,
+  location : e.target.location.value,
+  description : e.target.description.value,
+  image : e.target.image.value,
+ amount: e.target.amount.value,
+  email: user.email,
+ date: new Date(),
+}
+ //console.log(formData)
+
+  fetch('http://localhost:3000/issues', {
+    method: "POST",
+ headers: {
+    "Content-Type": "application/json",
+ }, 
+ body: JSON.stringify(formData)
+}).then(res => res.json())
+.then(data => {
+    console.log(data)
+    successToast('Issue successfully added!')
+     e.target.reset() // Clears the form
+})
+.catch(err => {
+    console.log(err)
+})
+
+
+ }
+  return (
+    <div className='max-w-sm mx-auto'>
+      <div className='py-6 '>
+        <form onSubmit={handleSubmit} className=" border p-4 rounded-lg">
+        <h1 className='p-2 text-2xl text-center'>Add New Issue</h1>
+
+   {/* Issue Title */}
+    <div className="mb-5">
+    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+    <input type="text"  name="title" className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" placeholder='issue title' required />
+  </div>
+
+  {/* Category */}
+   <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+          <select name="category"
+            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="Garbage">Garbage</option>
+            <option value="Illegal Construction">Illegal Construction</option>
+            <option value="Broken Public Property">Broken Public Property</option>
+            <option value="Road Damage">Road Damage</option>
+          </select>
+        </div>
+
+          {/* Location */}
+   <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+          <input        
+            type="text"
+            name='location'
+            placeholder="Location"
+            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            required
+          />
+        </div>
+
+   {/* Description */}
+  <div className="mb-5">
+    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+    <textarea name="description" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Describe the issue" required />
+  </div>
+
+ {/* Image */}
+        <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL</label>
+          <input       
+            type="url"
+             name='image'
+            placeholder="Image URL"
+            className="col-span-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
+        </div>
+  
+     {/* Suggested Fix Amount */}
+        <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suggested Fix Budget</label>
+          <input         
+            type="number"
+           name='amount'
+            placeholder="Enter amount"
+            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
+        </div>
+
+         {/* Email (current-user mail) */}
+        <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+          <input
+            type="email"
+            value={user.email}
+            readOnly
+            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
+        </div>
+
+  <button type="submit" className="btn text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Model</button>
+</form>
+    </div>
+    </div>
+  )
+}
+export default AddIssues
+
+/*  const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('e.target.value')
-    
-   /* const newIssue = {
+    console.log(e.target.value)
+
+    const newIssue = {
       title,
       category,
       location,
@@ -14,31 +137,47 @@ const AddIssues = ({currentUserEmail}) => {
       amount,
       status: 'ongoing',          // default status
       date: new Date().toISOString(),
-      email: currentUserEmail     // current logged-in user
+      email: user.email     // current logged-in user
     }
      console.log('New issue submitted:', newIssue)
     // TODO: send newIssue to your backend or API
 
+fetch('http://localhost:3000/issues',{
+  method:'POST',
+  headers: {
+    'Content-Type':'application/json',
+  },
+ body: JSON.stringify(newIssue)
+}).then(res => res.json())
+.then(data => {
+  console.log(data)
+})
+.catch(err => {
+  console.log(err)
+})
+
       // Reset form
-    setTitle('')
+  /*  setTitle('')
     setCategory('')
     setLocation('')
     setDescription('')
     setImage('')
-    setAmount('') */
-  }
-  return (
-    <div className='max-w-sm mx-auto'>
+    setAmount('') * /  
+  } */
+
+
+/*
+ <div className='max-w-sm mx-auto'>
       <div className='py-6 '>
         <form onSubmit={handleSubmit} className=" border p-4 rounded-lg">
         <h1 className='p-2 text-2xl text-center'>Add New Issue</h1>
 
-        {/* Issue Title */}
+        {/* Issue Title * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
           <input
             type="text"
-            value={'title'}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Issue Title"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -46,11 +185,11 @@ const AddIssues = ({currentUserEmail}) => {
           />
         </div>
 
-        {/* Category */}
+        {/* Category * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
           <select
-            value={'category'}
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             required
@@ -63,12 +202,12 @@ const AddIssues = ({currentUserEmail}) => {
           </select>
         </div>
 
-        {/* Location */}
+        {/* Location * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-          <input
+          <input        
             type="text"
-            value={'location'}
+            value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Location"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -76,11 +215,11 @@ const AddIssues = ({currentUserEmail}) => {
           />
         </div>
 
-        {/* Description */}
+        {/* Description * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
           <textarea
-            value={'description'}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows="4"
             placeholder="Describe the issue"
@@ -89,36 +228,36 @@ const AddIssues = ({currentUserEmail}) => {
           />
         </div>
 
-        {/* Image */}
+        {/* Image * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL</label>
-          <input
+          <input       
             type="url"
-            value={'image'}
+            value={image}
             onChange={(e) => setImage(e.target.value)}
             placeholder="Image URL"
             className="col-span-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           />
         </div>
 
-        {/* Suggested Fix Amount */}
+        {/* Suggested Fix Amount * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suggested Fix Budget</label>
-          <input
+          <input         
             type="number"
-            value={'amount'}
+            value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           />
         </div>
 
-        {/* Email (read-only) */}
+        {/* Email (read-only) * /}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
           <input
             type="email"
-            value={currentUserEmail}
+            value={user.email}
             readOnly
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           />
@@ -133,8 +272,4 @@ const AddIssues = ({currentUserEmail}) => {
     
       </form>
       </div>
-    </div>
-  )
-}
-
-export default AddIssues
+    </div> */

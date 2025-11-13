@@ -6,13 +6,6 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
 const {user, signOutUser } = use(AuthContext);
-
-/*  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []); */
  
   const handleLogout = () => {
      signOutUser().then(() => {
@@ -21,6 +14,7 @@ const {user, signOutUser } = use(AuthContext);
   console.log(error)
 });
   }
+ // console.log(user)
   return (
         <div className="navbar shadow-sm bg-color text nav">
   <div className="navbar-start">
@@ -64,7 +58,7 @@ const {user, signOutUser } = use(AuthContext);
         <div className="w-10 rounded-full">
           <img
             alt="Profile"
-            src={user?.photoURL? user.photoURL : "https://img.icons8.com/?size=100&id=NcQNyxjmHvuB&format=png&color=000000" }  />
+            src={user? user.photoURL : "https://img.icons8.com/?size=100&id=NcQNyxjmHvuB&format=png&color=000000" }  />
         </div>
       </div>
       <ul

@@ -36,13 +36,23 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
        }
 
-    {/*   const updateProfileImg = () => {
-        return   updateProfile(auth.currentUser, {
-  displayName: name,  photoURL: photoURL
-})   }  */}
+   const updateUserProfile = async (name, photoURL) => {
+    if (!auth.currentUser) return;
+
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photoURL,
+      });
+      await auth.currentUser.reload(); // refresh Firebase user data
+      setUser({ ...auth.currentUser }); // update local state → triggers UI update
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
   
    const authData = {
-   createUser, signInUser, user, signOutUser, setLoading
+   createUser, signInUser, user, signOutUser, setLoading, updateUserProfile
    }
    return (<AuthContext value={authData}>{children}</AuthContext>)
 }
