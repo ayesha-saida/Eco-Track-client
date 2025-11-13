@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between mx-[20px]">         
   <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                 <img src={logo} className="h-10" alt=" Logo" />
-                <span className="self-center text-2xl font-semibold text whitespace-nowrap dark:text-white">Eco Track</span>
+                <span className="self-center lg:text-2xl md:text-[18px] text-sm font-semibold text whitespace-nowrap dark:text-white">Eco Track</span>
             </a>
                               
             <ul className="flex flex-wrap items-center mb-6 font-medium text sm:mb-0 dark:text-gray-400">

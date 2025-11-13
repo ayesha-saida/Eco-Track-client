@@ -2,7 +2,7 @@ import React from 'react'
 
 const States = () => {
   return (
-    <div className="text-white px-4 py-6 reverse-bg-color">
+    <div className="text-white px-4 py-6 bg-[#06A67D]">
       <h1 className="lg:text-3xl text-xl text-center font-bold mb-4">
 Your Voice Matters — Let’s Clean Up Together
       </h1>

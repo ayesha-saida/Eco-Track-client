@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router';
 
  const IssueCard = ({issue}) => {
- const {title, image, category, location, amount} = issue;
+ const {_id, title, image, category, location, amount} = issue;
 
        return (
    <div className="lg:py-4 py-2  mb-3 rounded-xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300">
@@ -22,7 +22,7 @@ import { Link } from 'react-router';
                {amount} Tk
              </span>
            </div>
-           <Link to={'/issue-details'}
+           <Link to={`/issue-details/${_id}`} issues={issue}
              className="btn  mt-4 w-full bg-blue-600 text-white lg:text-lg text-sm lg:py-2 py-6 rounded-md hover:bg-blue-700 transition-colors duration-200"
            >
              See Details

@@ -11,6 +11,7 @@ import MyContribution from "../pages/MyContribution";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRouter from "./PrivateRouter";
 import IssueDetails from "../pages/IssueDetails";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -41,14 +42,17 @@ const router = createBrowserRouter([
     path: "/issues",
     element: <Issues /> ,
         },
-   {
-    path: "/issue-details",
-    element: <PrivateRouter> <IssueDetails /> </PrivateRouter> ,
-        },
-   {
+         {
     path: "/all-issues",
     element: <All_Issues /> ,
-    loader: () => fetch('http://localhost:3000/issues')
+    loader: () => fetch('http://localhost:3000/issues'),
+     hydrateFallbackElement: <Loading></Loading>
+        },
+   {
+    path: "/issue-details/:id",
+    element: ( <PrivateRouter> <IssueDetails /> </PrivateRouter> ),
+    loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`),
+     hydrateFallbackElement: <Loading></Loading>
         },
    {
     path: "/my-contribution",

@@ -36,7 +36,7 @@ const {user, signOutUser } = use(AuthContext);
     </div>
   <div className="flex items-center space-x-3">
   <img src={logo} alt="logo" className="w-10 lg:w-12 lg:ml-7 " />
-  <p className="font-semibold lg:text-2xl text-lg sm:text-sm">Eco Track</p>
+  <p className="font-semibold lg:text-2xl md:text-[18px] text-sm">Eco Track</p>
 </div>
 
    
