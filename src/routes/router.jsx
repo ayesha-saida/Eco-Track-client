@@ -38,6 +38,8 @@ const router = createBrowserRouter([
    {
     path: "/my-issues",
     element: <PrivateRouter> <MyIssues /> </PrivateRouter>,
+    loader: () => fetch('http://localhost:3000/issues'),
+     hydrateFallbackElement: <Loading /> 
         },
    {
     path: "/issues",

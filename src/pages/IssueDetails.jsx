@@ -8,14 +8,13 @@ const IssueDetails = () => {
  const { issues, contributions }= useLoaderData()
  const issue = issues.result
  //console.log(issue )
- //const contribute = contributions
 
    // Filter contributions that match this issueId or the URL id
   const filteredContributions = (contributions  || []).filter(
     (contribution) => contribution.issueId === id )
   
   return (
-  <div className=' w-11/12 mx-auto'> 
+  <div className='w-11/12 mx-auto'> 
    <DetailCard issue={issue}></DetailCard>
       <div className='flex justify-center items-center py-5'>
    <h1 className='lg:text-2xl text-xl font-bold text-center text bg-color p-4 rounded'>People who have already Contributed to this issue</h1>

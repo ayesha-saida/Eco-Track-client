@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { successToast } from './ToastContainer';
 import logo from '../asset/eco_logo.png'
 import { AuthContext } from '../provider/AuthProvider';
+import ThemeChange from './ThemeChange';
 
 const Navbar = () => {
 const {user, signOutUser } = use(AuthContext);
@@ -53,6 +54,7 @@ const {user, signOutUser } = use(AuthContext);
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
+    <ThemeChange></ThemeChange>
 {user? ( <>  <div className="dropdown dropdown-end">
   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
