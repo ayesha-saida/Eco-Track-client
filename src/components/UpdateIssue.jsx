@@ -3,7 +3,7 @@ import { successToast } from './ToastContainer';
 import Loading from './Loading';
 
 const UpdateIssue = ({issueData}) => {
-//  const [status, setStatus] = useState("ongoing");
+ const [status, setStatus] = useState("ongoing");
  const {_id, title, category, description, amount} = issueData
   //console.log(issueData)
    const modalId = `update_modal_${_id}`
@@ -15,13 +15,14 @@ const UpdateIssue = ({issueData}) => {
   const handleUpdate = (e)=> {
  e.preventDefault()
   setLoading(true);
+  
 const formData = {
   title: e.target.title.value,
   category : e.target.category.value,
   description : e.target.description.value,
   amount : e.target.amount.value,
 }
-console.log(formData)
+ //console.log(formData)
 
 fetch(`http://localhost:3000/issues/${_id}`, {
     method: "PUT",
@@ -33,11 +34,11 @@ fetch(`http://localhost:3000/issues/${_id}`, {
 .then(data => {
     console.log(data)
     successToast('Issue updated')
-     e.target.reset() // Clears the form   
-     closeModal();  // Auto-close modal
+     e.target.reset()   
+     closeModal();   
         
     setTimeout(() => {
-        window.location.reload(); // Reload page after success
+        window.location.reload(); 
       }, 500); // optional delay for toast animation
 })
 .catch(err => {
@@ -106,7 +107,7 @@ fetch(`http://localhost:3000/issues/${_id}`, {
       {/* Status */}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-           <select name='status'>
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
   </select>

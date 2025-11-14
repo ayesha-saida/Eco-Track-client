@@ -1,7 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 const DeleteIssue = ({ issueId, onDelete }) => {
+  const navigate = useNavigate('/all-issues')
   const modalId = `delete_modal_${issueId}`
+
 
   return (
     <div>

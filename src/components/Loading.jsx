@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center space-x-5 py-5'>
         <span className="loading loading-dots loading-xs"></span>
 <span className="loading loading-dots loading-sm"></span>
 <span className="loading loading-dots loading-md"></span>

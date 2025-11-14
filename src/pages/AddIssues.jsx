@@ -1,12 +1,19 @@
 import React, { use, useState } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
 import { successToast } from '../components/ToastContainer'
+import Loading from '../components/Loading'
 
 const AddIssues = () => {
   const {user} = use(AuthContext)
-const [status, setStatus] = useState("ongoing");
+  const [status, setStatus] = useState("ongoing");
+  const [loading, setLoading] = useState(false);
+  const closeModal = () => {
+    document.getElementById(modalId).close();
+  };
+
 const handleSubmit = (e) => {
  e.preventDefault()
+setLoading(true);
 
  const formData = {
      title : e.target.title.value,
@@ -31,10 +38,17 @@ const handleSubmit = (e) => {
     console.log(data)
     successToast('Issue successfully added!')
      e.target.reset() // Clears the form
+      closeModal();  // Auto-close modal
+        
+    setTimeout(() => {
+        window.location.reload(); // Reload page after success
+      }, 500); 
 })
 .catch(err => {
     console.log(err)
-})
+}) .finally(() => {
+        setLoading(false); 
+      });
 
 
  }
@@ -126,7 +140,13 @@ const handleSubmit = (e) => {
           />
         </div>
 
-  <button type="submit" className="btn text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Issue</button>
+       <button type="submit"  disabled={loading}  
+   className="btn text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+    
+    {loading ?   <Loading /> : "Add Issue"}
+                 
+   </button>
+  
 </form>
     </div>
     </div>

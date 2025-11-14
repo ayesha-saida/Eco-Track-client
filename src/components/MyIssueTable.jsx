@@ -1,17 +1,32 @@
 import { use } from 'react'
 import UpdateIssue from './UpdateIssue'
 import DeleteIssue from './DeleteIssue'
-import { useLoaderData } from 'react-router'
+import { useLoaderData, useNavigate} from 'react-router'
 import { AuthContext } from '../provider/AuthProvider'
 
 const MyIssueTable = () => {
   const {user} = use(AuthContext)
   const data = useLoaderData()
- // const {email} = data
-  //console.log(data)
+   //console.log(data)
+ const navigate = useNavigate('/all-issues')
 
- const handleDelete = async (id) => {
-  // your API call here…
+const handleDelete = async(id) => {
+   fetch(`http://localhost:3000/issues/${id}`, {
+     method: "DELETE",
+  headers: {
+     "Content-Type": "application/json",
+  }
+ }).then(res => res.json())
+ .then(data => {
+     console.log(data)  
+
+    navigate('/all-issues')
+
+ })
+ .catch(err => {
+     console.log(err)
+ })
+
   console.log("Deleting issue:", id)
 }
 
@@ -35,7 +50,7 @@ const MyIssueTable = () => {
               </td>
 
               <td className="border border-gray-300">
-                <DeleteIssue issueId={issue._id}  onDelete={handleDelete} />
+              <DeleteIssue issueId={issue._id}  onDelete={handleDelete} />  
               </td>
             </tr>
           ))
