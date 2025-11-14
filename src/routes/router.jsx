@@ -13,6 +13,7 @@ import PrivateRouter from "./PrivateRouter";
 import IssueDetails from "../pages/IssueDetails";
 import Loading from "../components/Loading";
 import { combineLoader } from "../loader/combineLoader";
+import { loaderToContribute } from "../loader/LoaderToContribute";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,8 @@ const router = createBrowserRouter([
    {
     path: "/my-contribution",
     element: <PrivateRouter> <MyContribution /> </PrivateRouter>,
+     loader: loaderToContribute,
+     hydrateFallbackElement: <Loading />
         },
     ]
   },

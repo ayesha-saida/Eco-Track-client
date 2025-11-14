@@ -1,11 +1,16 @@
-import React, { use } from 'react'
+import React, { use, useState } from 'react'
 import garbage from '../asset/garbage_in_public.png'
 import { AuthContext } from '../provider/AuthProvider'
 import { successToast } from './ToastContainer'
+import { useNavigate } from 'react-router'
 
 const DetailCard = ({issue}) => {
      const {user} = use(AuthContext)
  const {_id,title, category, location, description, image, amount, date} = issue;
+
+   const [loading, setLoading] = useState(false);
+   const navigate = useNavigate()
+
   const handleContribution = (e) => {
   e.preventDefault()
 
@@ -31,6 +36,11 @@ const formData = {
      console.log(data)
      successToast('Thanks for your Contribution 🎉')
       e.target.reset() // Clears the form
+         navigate('/issue-details') 
+        
+    setTimeout(() => {
+        window.location.reload(); 
+      }, 500);
  })
  .catch(err => {
      console.log(err)

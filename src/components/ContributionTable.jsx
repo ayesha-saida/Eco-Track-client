@@ -1,6 +1,7 @@
 import React, { use } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
 
+//This is contribution table is for total users contribution on a specific issue
 const ContributionTable = ( {items} ) => {
     const {amount, email, name} = items
     const {user} = use(AuthContext)

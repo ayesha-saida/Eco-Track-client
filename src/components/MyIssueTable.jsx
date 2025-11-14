@@ -8,7 +8,7 @@ const MyIssueTable = () => {
   const {user} = use(AuthContext)
   const data = useLoaderData()
    //console.log(data)
- const navigate = useNavigate('/all-issues')
+ const navigate = useNavigate()
 
 const handleDelete = async(id) => {
    fetch(`http://localhost:3000/issues/${id}`, {
@@ -27,14 +27,11 @@ const handleDelete = async(id) => {
      console.log(err)
  })
 
-  console.log("Deleting issue:", id)
+  //console.log("Deleting issue:", id)
 }
 
-
  return (
-  <>
-    <tbody className="text-center">
-      {data.filter(issue => issue.email === user?.email).length > 0 ? (
+  
         data
           .filter(issue => issue.email === user?.email)
           .map(issue => (
@@ -52,18 +49,9 @@ const handleDelete = async(id) => {
               <td className="border border-gray-300">
               <DeleteIssue issueId={issue._id}  onDelete={handleDelete} />  
               </td>
-            </tr>
-          ))
-      ) : (
-        <tr>
-          <td colSpan="3" className="text-center p-4 text-red-500">
-            No issue found
-          </td>
-        </tr>
-      )}
-    </tbody>
-  </>
-);
+            </tr> ))
+
+)
 
 
 

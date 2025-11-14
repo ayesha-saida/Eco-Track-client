@@ -2,14 +2,13 @@ import React, { use, useState } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
 import { successToast } from '../components/ToastContainer'
 import Loading from '../components/Loading'
+import { useNavigate } from 'react-router'
 
 const AddIssues = () => {
   const {user} = use(AuthContext)
   const [status, setStatus] = useState("ongoing");
   const [loading, setLoading] = useState(false);
-  const closeModal = () => {
-    document.getElementById(modalId).close();
-  };
+  const navigate = useNavigate()
 
 const handleSubmit = (e) => {
  e.preventDefault()
@@ -37,12 +36,8 @@ setLoading(true);
 .then(data => {
     console.log(data)
     successToast('Issue successfully added!')
-     e.target.reset() // Clears the form
-      closeModal();  // Auto-close modal
-        
-    setTimeout(() => {
-        window.location.reload(); // Reload page after success
-      }, 500); 
+     e.target.reset()  
+  navigate('/all-issues')
 })
 .catch(err => {
     console.log(err)
