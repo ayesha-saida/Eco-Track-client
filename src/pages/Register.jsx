@@ -75,6 +75,11 @@ try {
   };
 }
   const handleGoogleSignIn = () => {
+    if (auth.currentUser) {
+    alert("You are already logged in!");
+    return; // stop further execution
+  }
+  
     signInWithPopup(auth, provider)
       .then((result) => {
         successToast("Registration successful with Google");

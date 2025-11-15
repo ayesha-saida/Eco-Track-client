@@ -1,8 +1,8 @@
 // loader.js
 export async function combineLoader({params}) {
   const [issuesRes, contributionsRes ] = await Promise.all([
-   fetch(`http://localhost:3000/issues/${params.id}`),
-   fetch('http://localhost:3000/my-contribution'),
+   fetch(`https://eco-track-server-chi.vercel.app/issues/${params.id}`),
+   fetch('https://eco-track-server-chi.vercel.app/my-contribution'),
   ]);
 
    if (!issuesRes.ok || !contributionsRes.ok) {

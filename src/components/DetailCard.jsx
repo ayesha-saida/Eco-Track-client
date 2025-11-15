@@ -25,7 +25,7 @@ const formData = {
    additional: e.target.additional.value
 }
   console.log('form data before sending',formData)
-  fetch('http://localhost:3000/my-contribution', {
+  fetch('https://eco-track-server-chi.vercel.app/my-contribution', {
   method: "POST",
   headers: {
      "Content-Type": "application/json",

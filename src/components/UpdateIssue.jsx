@@ -24,7 +24,7 @@ const formData = {
 }
  //console.log(formData)
 
-fetch(`http://localhost:3000/issues/${_id}`, {
+fetch(`https://eco-track-server-chi.vercel.app/issues/${_id}`, {
     method: "PUT",
  headers: {
     "Content-Type": "application/json",

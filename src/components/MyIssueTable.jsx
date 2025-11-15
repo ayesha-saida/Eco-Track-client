@@ -11,7 +11,7 @@ const MyIssueTable = () => {
  const navigate = useNavigate()
 
 const handleDelete = async(id) => {
-   fetch(`http://localhost:3000/issues/${id}`, {
+   fetch(`https://eco-track-server-chi.vercel.app/issues/${id}`, {
      method: "DELETE",
   headers: {
      "Content-Type": "application/json",

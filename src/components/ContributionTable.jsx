@@ -9,7 +9,7 @@ const ContributionTable = ( {items} ) => {
    const photoURL =
     user?.email === email
       ? user.photoURL
-      : "https://img.daisyui.com/images/profile/demo/2@94.webp"; 
+      : "https://img.icons8.com/?size=100&id=118880&format=png&color=000000"; 
 
   return (  
  <tr>

@@ -26,7 +26,7 @@ setLoading(true);
 }
  //console.log(formData)
 
-  fetch('http://localhost:3000/issues', {
+  fetch('https://eco-track-server-chi.vercel.app/issues', {
     method: "POST",
  headers: {
     "Content-Type": "application/json",

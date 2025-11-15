@@ -27,10 +27,6 @@ const MyContributionTable = ({items}) => {
               <td className="border border-gray-300">
                {new Date(date).toLocaleDateString()} 
               </td>
-
-              <td className="border border-gray-300 hover:underline">
-               Download 
-              </td>
             </tr>
 
     </tbody> 

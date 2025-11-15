@@ -34,7 +34,6 @@ const contributionsWithIssue = filteredContributions.map((contribution) => {
             <th className="border border-gray-300">Category</th>
             <th className="border border-gray-300">Paid Amount</th>
             <th className="border border-gray-300">Date</th>
-            <th className="border border-gray-300">Download report</th>
           </tr>
         </thead>
           {contributionsWithIssue.map( (info) => ( <MyContributionTable key={info._id} items={info} /> )     )}
