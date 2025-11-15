@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import { use } from 'react'
 import { Link, useNavigate } from 'react-router';
 import  {FcGoogle}  from "react-icons/fc";
 import auth from '../firebase/firebase.config';
@@ -13,19 +13,6 @@ const Register = () => {
   const {createUser, updateUserProfile} = use(AuthContext)
   const navigate = useNavigate();
 
-/*const handleRegister = (e) => {
-    e.preventDefault()
-    const name = e.target.name.value;
-    const photoURL = e.target.photoURL.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
-    createUser(email,password).then(res => 
-    {  console.log(res.user)}
-    ).catch(e => {
-      console.log(e)
-    })
-} */
  const handleRegister = async(e) => {
     e.preventDefault()
     const name = e.target.name.value;
@@ -100,25 +87,6 @@ try {
       });
   };
 
- /* const handleGoogleSignIn = () => {
-   signInWithPopup(auth, provider)
-  .then((result) => {
-   successToast('Registration successful with Google');
-   navigate('/');
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    console.log(result)
-   
-  }).catch((error) => {
-    console.log(error)
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    defaultToast(errorMessage)
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  });
-  } */
-
   return (
     <div className='min-h-screen mx-auto'>
     <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  
@@ -138,7 +106,7 @@ try {
 
   <label className="label">Password</label>
   <input name='password' type="password" className="input" placeholder="Password" required />
-  <button type='submit' className="btn bg-[#8aeb60] mt-4">Register</button>
+  <button type='submit' className="btn button-bg mt-4">Register</button>
 <p className='text-center text-gray-500'>or</p>
  <button
           onClick={handleGoogleSignIn}

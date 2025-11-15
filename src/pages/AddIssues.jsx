@@ -117,13 +117,12 @@ setLoading(true);
     {/* Status */}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-           <select value={status} onChange={(e) => setStatus(e.target.value)}>
+           <select value={status} onChange={(e) => setStatus(e.target.value)} className='bg-gray-50 border border-gray-300 rounded'>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
   </select>
         </div>
    
-
          {/* Email (current-user mail) */}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -136,7 +135,7 @@ setLoading(true);
         </div>
 
        <button type="submit"  disabled={loading}  
-   className="btn text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+   className="btn button-bg font-medium rounded-lg text-sm px-5 py-2.5 text-center">
     
     {loading ?   <Loading /> : "Add Issue"}
                  

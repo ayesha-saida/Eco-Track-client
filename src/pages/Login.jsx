@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { use, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router';
 import auth from '../firebase/firebase.config';
@@ -47,19 +47,6 @@ const Login = () => {
       });
   };
 
- /* const handleGoogleSignIn = async() => {
-   try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    setUser(user);
-    successToast('Login successful with Google');
-    console.log('Google Sign-In result:', result);
-  } catch (error) {
-    console.error('Google Sign-In Error:', error.code, error.message, error.customData);
-    defaultToast(error.message);
-  }
-  }  */ 
   if (user) return <Navigate to="/" />;
   return (
     <div className='min-h-screen mx-auto'>
@@ -72,7 +59,7 @@ const Login = () => {
 
   <label className="label">Password</label>
   <input name='password' type="password" className="input" placeholder="Password" />
- <button type='submit' className="btn bg-[#8aeb60] mt-4">Login</button>
+ <button type='submit' className="btn button-bg mt-4">Login</button>
   <p className='text-center text-gray-500'>or</p>
    <button
     type="button" 

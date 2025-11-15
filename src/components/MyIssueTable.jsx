@@ -42,11 +42,11 @@ const handleDelete = async(id) => {
                 </p>
               </td>
 
-              <td className="border border-gray-300">
+              <td className="border border-gray-300  text-center">
                 <UpdateIssue key={issue._id} issueData={issue} />
               </td>
 
-              <td className="border border-gray-300">
+              <td className="border border-gray-300 text-center">
               <DeleteIssue issueId={issue._id}  onDelete={handleDelete} />  
               </td>
             </tr> ))

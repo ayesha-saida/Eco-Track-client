@@ -23,7 +23,10 @@ const MyIssues = () => {
             <th className="border border-gray-300">Delete Issue</th>
           </tr>
         </thead>
-          <MyIssueTable></MyIssueTable>
+        <tbody>
+   <MyIssueTable></MyIssueTable>
+        </tbody>
+       
       </table> ) : (
           <p className="text-center text-xl py-6">
             No contribution has done yet.

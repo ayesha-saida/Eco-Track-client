@@ -1,5 +1,5 @@
 import  { use} from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 import { successToast } from './ToastContainer';
 import logo from '../asset/eco_logo.png'
 import { AuthContext } from '../provider/AuthProvider';
@@ -16,6 +16,10 @@ const {user, signOutUser } = use(AuthContext);
 });
   }
  // console.log(user)
+
+  const linkClass = ({ isActive }) =>
+  isActive ? 'underline' : '';
+
   return (
         <div className="navbar shadow-sm bg-color text nav">
   <div className="navbar-start">
@@ -26,13 +30,14 @@ const {user, signOutUser } = use(AuthContext);
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow">
-            {user? (<> <li className='text-[#014036]'> <Link to={'/'}>Home</Link> </li>
-        <li className='text-[#014036]'><Link to={'/issues'}>Issues</Link></li>
-        <li className='text-[#014036]'><Link to={'/all-issues'}>All Issues</Link></li>
-        <li className='text-[#014036]'><Link to={'/add-issues'}>Add Issues</Link></li>
-        <li className='text-[#014036]'><Link to={'/my-issues'}> My Issues </Link></li>
-        <li className='text-[#014036]'><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li className='text-[#014036]'> <Link to={'/'}>Home</Link> </li>
-        <li className='text-[#014036]'><Link to={'/issues'}>Issues</Link></li> </>) }
+            {user? (<> <li className='text-[#014036]'> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
+        <li className='text-[#014036]'><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li>
+        <li className='text-[#014036]'><NavLink to={'/all-issues'} className={linkClass}>All Issues</NavLink></li>
+        <li className='text-[#014036]'><NavLink to={'/add-issues'} className={linkClass}>Add Issues</NavLink></li>
+        <li className='text-[#014036]'><NavLink to={'/my-issues'} className={linkClass}> My Issues </NavLink></li>
+        <li className='text-[#014036]'><NavLink to={'/my-contribution'} className={linkClass}>My Contribution </NavLink></li> </>) :  
+        (  <> <li className='text-[#014036]'> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
+        <li className='text-[#014036]'><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li> </>) }
       </ul>     
     </div>
   <div className="flex items-center space-x-3">
@@ -44,13 +49,14 @@ const {user, signOutUser } = use(AuthContext);
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
-        {user? (<> <li className="hover:underline"> <Link to={'/'}>Home</Link> </li>
-        <li className="hover:underline"> <Link to={'/issues'}>Issues</Link></li>
-        <li className="hover:underline"><Link to={'/all-issues'}>All Issues</Link></li>
-        <li className="hover:underline"><Link to={'/add-issues'}>Add Issues</Link></li>
-        <li className="hover:underline"><Link to={'/my-issues'}> My Issues </Link></li>
-        <li className="hover:underline"><Link to={'/my-contribution'}>My Contribution </Link></li> </>) :  (<> <li  className="hover:underline"> <Link to={'/'}>Home</Link> </li>
-        <li className="hover:underline"><Link to={'/issues'}>Issues</Link></li> </>) }
+        {user? (<> <li> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
+        <li> <NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li>
+        <li><NavLink to={'/all-issues'} className={linkClass}>All Issues</NavLink></li>
+        <li ><NavLink to={'/add-issues'} className={linkClass}>Add Issues</NavLink></li>
+        <li ><NavLink to={'/my-issues'} className={linkClass}> My Issues </NavLink></li>
+        <li><NavLink to={'/my-contribution'} className={linkClass}>My Contribution </NavLink></li> </>) : 
+         (<> <li> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
+        <li><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li> </>) }
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
@@ -69,8 +75,8 @@ const {user, signOutUser } = use(AuthContext);
         <li><a className='btn button-bg justify-center text-lg text-[#014036] text-center' onClick={handleLogout}>Logout</a></li>
       </ul>
       </div>
-    </> ) : (  <>  <Link to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</Link>
-    <Link to={'/register'} className="btn shadow-none border-none button-bg lg:mr-6 mr-2">  Register</Link> </> ) } 
+    </> ) : (  <>  <NavLink to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</NavLink>
+    <NavLink to={'/register'} className="btn shadow-none border-none button-bg lg:mr-6 mr-2">  Register</NavLink> </> ) } 
   </div>
 </div>
 

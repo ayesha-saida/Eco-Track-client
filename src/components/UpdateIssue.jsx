@@ -54,27 +54,27 @@ fetch(`http://localhost:3000/issues/${_id}`, {
    <button className="btn  button-bg" onClick={()=>document.getElementById(modalId).showModal()}>Update Issue</button>
 <dialog id={modalId} className="modal">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Update your issue </h3>
+{  /*  <h3 className="font-bold text-lg">Update your issue </h3>  */}
     
     <div className="modal-action">
-      <form method="dialog">
-        <button className="btn">Close</button>
-      </form>
+       <form method="dialog">
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
     </div>
 
     <div className='text-gray-900'> 
-        <form onSubmit={handleUpdate} className=" border p-4 rounded-lg">
-        <h1 className='p-2 text-2xl text-center'>Add New Issue</h1>
+        <form onSubmit={handleUpdate} className="border p-4 rounded-lg">
+        <h1 className='p-2 text-2xl font-semibold text-center'>Update Your Issue</h1>
 
    {/* Issue Title */}
     <div className="mb-5">
-    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">title</label>
+    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Title</label>
     <input type="text"  name="title" className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" defaultValue={title}  required />
   </div>
 
   {/* Category */}
    <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Category</label>
           <select name="category"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             required
@@ -89,7 +89,7 @@ fetch(`http://localhost:3000/issues/${_id}`, {
 
          {/*  Amount */}
     <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Amount</label>
           <input         
             type="number"
            name='amount'
@@ -100,21 +100,22 @@ fetch(`http://localhost:3000/issues/${_id}`, {
 
    {/* Description */}
   <div className="mb-5">
-    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Description</label>
     <textarea name="description" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" defaultValue={description}  required />
   </div>
     
       {/* Status */}
-        <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+    <div className="mb-5 items-start">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Status</label>
+          <select value={status} onChange={(e) => setStatus(e.target.value)} className='flex justify-start items-start bg-gray-50 border border-gray-300 rounded'>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
   </select>
-        </div>
+        </div>  
+
 
   <button type="submit"  disabled={loading} // Disabled while loading 
-   className="btn text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+   className="btn button-bg font-medium rounded-lg text-sm px-5 py-2.5 text-center">
     
     {loading ?   <Loading /> : "Update Issue"}
                  
