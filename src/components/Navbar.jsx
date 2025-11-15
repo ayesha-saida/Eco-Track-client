@@ -49,13 +49,12 @@ const {user, signOutUser } = use(AuthContext);
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-lg">
         {user? (<> <li> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
-        <li> <NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li>
         <li><NavLink to={'/all-issues'} className={linkClass}>All Issues</NavLink></li>
         <li ><NavLink to={'/add-issues'} className={linkClass}>Add Issues</NavLink></li>
         <li ><NavLink to={'/my-issues'} className={linkClass}> My Issues </NavLink></li>
         <li><NavLink to={'/my-contribution'} className={linkClass}>My Contribution </NavLink></li> </>) : 
          (<> <li> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
-        <li><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li> </>) }
+        <li><NavLink to={'/all-issues'} className={linkClass}>Issues</NavLink></li> </>) }
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">

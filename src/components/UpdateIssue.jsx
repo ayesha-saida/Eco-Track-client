@@ -1,6 +1,7 @@
 import {  useState } from 'react'
 import { successToast } from './ToastContainer';
 import Loading from './Loading';
+import { useNavigate } from 'react-router';
 
 const UpdateIssue = ({issueData}) => {
  const [status, setStatus] = useState("ongoing");
@@ -12,6 +13,7 @@ const UpdateIssue = ({issueData}) => {
     document.getElementById(modalId).close();
   };
 
+  const navigation = useNavigate()
   const handleUpdate = (e)=> {
  e.preventDefault()
   setLoading(true);
@@ -21,6 +23,7 @@ const formData = {
   category : e.target.category.value,
   description : e.target.description.value,
   amount : e.target.amount.value,
+  status: e.target.status.value,
 }
  //console.log(formData)
 
@@ -37,9 +40,7 @@ fetch(`https://eco-track-server-chi.vercel.app/issues/${_id}`, {
      e.target.reset()   
      closeModal();   
         
-    setTimeout(() => {
-        window.location.reload(); 
-      }, 500); // optional delay for toast animation
+   navigation('/all-issues')
 })
 .catch(err => {
     console.log(err)
@@ -107,7 +108,7 @@ fetch(`https://eco-track-server-chi.vercel.app/issues/${_id}`, {
       {/* Status */}
     <div className="mb-5 items-start">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Status</label>
-          <select value={status} onChange={(e) => setStatus(e.target.value)} className='flex justify-start items-start bg-gray-50 border border-gray-300 rounded'>
+          <select name='status' className='flex justify-start items-start bg-gray-50 border border-gray-300 rounded'>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
   </select>

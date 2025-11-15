@@ -28,8 +28,8 @@ const MyIssues = () => {
         </tbody>
        
       </table> ) : (
-          <p className="text-center text-xl py-6">
-            No contribution has done yet.
+          <p className="text-center text-xl py-6 text-red-500 font-semibold ">
+            No issues has posted yet.
           </p>) }        
     </div>
 

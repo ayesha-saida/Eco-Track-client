@@ -1,5 +1,4 @@
-import React, { use, useState } from 'react'
-import garbage from '../asset/garbage_in_public.png'
+import  { use, useState } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
 import { successToast } from './ToastContainer'
 import { useNavigate } from 'react-router'
@@ -8,7 +7,6 @@ const DetailCard = ({issue}) => {
      const {user} = use(AuthContext)
  const {_id,title, category, location, description, image, amount, date} = issue;
 
-   const [loading, setLoading] = useState(false);
    const navigate = useNavigate()
 
   const handleContribution = (e) => {

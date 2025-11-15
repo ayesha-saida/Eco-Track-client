@@ -48,10 +48,10 @@ const Login = () => {
       })
       .catch((error) => {
            if (error.code === "auth/popup-closed-by-user") {
-        console.log("Login cancelled by user.");
+        defaultToast("Login cancelled by user.");
       } else {
         console.error("Firebase Auth Error:", error);
-        defaultToast(error.message); // handle other errors
+        console.log(error.message); // handle other errors
       }
 
       });

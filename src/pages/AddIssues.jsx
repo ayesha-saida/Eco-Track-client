@@ -15,14 +15,15 @@ const handleSubmit = (e) => {
 setLoading(true);
 
  const formData = {
-     title : e.target.title.value,
-  category : e.target.category.value,
-  location : e.target.location.value,
-  description : e.target.description.value,
-  image : e.target.image.value,
- amount: e.target.amount.value,
-  email: user.email,
-   date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
+title : e.target.title.value,
+category : e.target.category.value,
+location : e.target.location.value,
+description : e.target.description.value,
+image : e.target.image.value,
+amount: e.target.amount.value,
+status: e.target.status.value,
+email: user.email,
+date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
 }
  //console.log(formData)
 
@@ -117,7 +118,7 @@ setLoading(true);
     {/* Status */}
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-           <select value={status} onChange={(e) => setStatus(e.target.value)} className='bg-gray-50 border border-gray-300 rounded'>
+           <select name='status' className='bg-gray-50 border border-gray-300 rounded' required>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
   </select>

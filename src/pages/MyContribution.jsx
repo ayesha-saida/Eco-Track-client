@@ -39,7 +39,7 @@ const contributionsWithIssue = filteredContributions.map((contribution) => {
           {contributionsWithIssue.map( (info) => ( <MyContributionTable key={info._id} items={info} /> )     )}
 
       </table> ) :  (
-          <p className="text-center text-xl py-6">
+          <p className="text-center text-xl py-6 text-red-500 font-semibold ">
             No contribution has done yet.
           </p>
         )   }    

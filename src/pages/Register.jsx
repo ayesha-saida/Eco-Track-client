@@ -84,11 +84,11 @@ try {
       .then((result) => {
         successToast("Registration successful with Google");
         navigate("/");
-        console.log(result)
+        defaultToast(result)
       })
       .catch((error) => {
         console.error(error);
-        defaultToast(error.message);
+        console.log(error.message);
       });
   };
 
