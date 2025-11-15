@@ -31,13 +31,12 @@ const {user, signOutUser } = use(AuthContext);
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow">
             {user? (<> <li className='text-[#014036]'> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
-        <li className='text-[#014036]'><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li>
         <li className='text-[#014036]'><NavLink to={'/all-issues'} className={linkClass}>All Issues</NavLink></li>
         <li className='text-[#014036]'><NavLink to={'/add-issues'} className={linkClass}>Add Issues</NavLink></li>
         <li className='text-[#014036]'><NavLink to={'/my-issues'} className={linkClass}> My Issues </NavLink></li>
         <li className='text-[#014036]'><NavLink to={'/my-contribution'} className={linkClass}>My Contribution </NavLink></li> </>) :  
         (  <> <li className='text-[#014036]'> <NavLink to={'/'} className={linkClass}>Home</NavLink> </li>
-        <li className='text-[#014036]'><NavLink to={'/issues'} className={linkClass}>Issues</NavLink></li> </>) }
+        <li className='text-[#014036]'><NavLink to={'/all-issues'} className={linkClass}>Issues</NavLink></li> </>) }
       </ul>     
     </div>
   <div className="flex items-center space-x-3">

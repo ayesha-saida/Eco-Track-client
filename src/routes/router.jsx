@@ -42,10 +42,10 @@ const router = createBrowserRouter([
     loader: () => fetch('https://eco-track-server-chi.vercel.app/issues'),
      hydrateFallbackElement: <Loading /> 
         },
-   {
+  /* {
     path: "/issues",
     element: <Issues /> ,
-        },
+        }, */
          {
     path: "/all-issues",
     element: <All_Issues /> ,

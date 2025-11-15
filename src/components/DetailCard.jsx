@@ -36,7 +36,7 @@ const formData = {
      console.log(data)
      successToast('Thanks for your Contribution 🎉')
       e.target.reset() // Clears the form
-         navigate('/issue-details') 
+         navigate('/all-issues') 
         
     setTimeout(() => {
         window.location.reload(); 
