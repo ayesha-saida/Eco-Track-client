@@ -4,7 +4,6 @@ import IssueCard from './IssueCard'
 
 const Complain = () => {
     const data = useLoaderData()
- console.log(data)
 
  const latestSix = data
   .sort((a, b) => new Date(b.date) - new Date(a.date))

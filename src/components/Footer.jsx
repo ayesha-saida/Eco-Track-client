@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../asset/eco_logo.png'
+import { Link } from 'react-router'
 
 const Footer = () => {
   return (
@@ -14,18 +15,16 @@ const Footer = () => {
                               
             <ul className="flex flex-wrap items-center mb-6 font-medium text sm:mb-0 dark:text-gray-400">
                 <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">About</a>
+                    <Link className="hover:underline me-4 md:me-6" to={'/'}>Home</Link>
                 </li>
                 <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    <Link className="hover:underline me-4 md:me-6" to={'/all-issues'}>issues</Link>
                 </li>
                 <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" className="hover:underline">Contact</a>
+                    <Link className="hover:underline me-4 md:me-6" to={'/my-contribution'}>Contribution</Link>
                 </li>
             </ul>
+            
         </div>
         <div>
               <p className='text-gray-300 lg:text-[17px] text-sm pt-2  mx-[20px]'> Eco Track is a Community Cleanliness & Issue Reporting Portal.

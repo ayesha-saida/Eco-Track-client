@@ -5,13 +5,16 @@ import { Link } from 'react-router';
  const {_id, title, image, category, location, amount} = issue;
 
        return (
-   <div className="lg:py-4 py-2  mb-3 rounded-xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300">
+   <div className="lg:py-4 py-2  mb-3 rounded-xl overflow-hidden shadow-lg  hover:shadow-2xl transition-shadow duration-300">
+        <div className='p-4 bg-white rounded-t-xl'>
          <img
            className="w-full h-48 object-cover rounded"
            src={image}
            alt={title}
          />
-         <div className="p-5">
+          </div>
+
+         <div className="p-5 bg-white rounded-b-xl">
            <h2 className="lg:text-xl font-semibold text-gray-800">{title}</h2>
            <p className="text-sm text-gray-500 mt-1">{ category}</p>
            <div className="flex lg:flex-row flex-col justify-between lg:items-center mt-3 lg:space-y-0 space-y-2">
