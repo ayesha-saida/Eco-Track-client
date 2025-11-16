@@ -62,24 +62,24 @@ const Login = () => {
     <div className='min-h-screen mx-auto'>
 <form onSubmit={handleLogin} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'> 
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-  <legend className="fieldset-legend text-[#014036]">Login</legend>
+  <legend className="fieldset-legend text-base-content">Login</legend>
 
-  <label className="label">Email</label>
-  <input name='email' type="email" className="input" placeholder="Email" />
+  <label className="label text-base-content">Email</label>
+  <input name='email' type="email" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Email" />
 
-  <label className="label">Password</label>
-  <input name='password' type="password" className="input" placeholder="Password" />
+  <label className="label text-base-content">Password</label>
+  <input name='password' type="password" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Password" />
  <button type='submit' className="btn button-bg mt-4">Login</button>
-  <p className='text-center text-gray-500'>or</p>
+  <p className='text-center text-base-content/60 mt-2'>or</p>
    <button
     type="button" 
             onClick={handleGoogleSignIn}
-            className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+            className="btn bg-base-100 text-base-content border-base-300 mt-2"
           >
            <FcGoogle />
             Login with Google
           </button>
-  <p className='pt-2 text-center'>Don't have an account? <Link to={'/register'} className='underline hover:text-blue-500'> Register </Link> </p>
+  <p className='pt-2 text-center text-base-content'>Don't have an account? <Link to={'/register'} className='underline hover:text-blue-500'> Register </Link> </p>
 </fieldset>
 </form>
     </div>

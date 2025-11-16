@@ -1,16 +1,18 @@
 import  { use} from 'react'
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { successToast } from './ToastContainer';
 import logo from '../asset/eco_logo.png'
 import { AuthContext } from '../provider/AuthProvider';
 import ThemeChange from './ThemeChange';
 
 const Navbar = () => {
+  const navigation = useNavigate()
 const {user, signOutUser } = use(AuthContext);
  
   const handleLogout = () => {
      signOutUser().then(() => {
   successToast('Logout successful')
+ navigation('/')
 }).catch((error) => {
   console.log(error)
 });
@@ -58,8 +60,8 @@ const {user, signOutUser } = use(AuthContext);
     </ul>
   </div>
   <div className="navbar-end space-x-2 ">
-    <ThemeChange></ThemeChange>
-{user? ( <>  <div className="dropdown dropdown-end">
+   
+{user? ( <> <ThemeChange></ThemeChange> <div className="dropdown dropdown-end">
   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
@@ -73,8 +75,9 @@ const {user, signOutUser } = use(AuthContext);
         <li><a className='btn button-bg justify-center text-lg text-[#014036] text-center' onClick={handleLogout}>Logout</a></li>
       </ul>
       </div>
-    </> ) : (  <>  <NavLink to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</NavLink>
-    <NavLink to={'/register'} className="btn shadow-none border-none button-bg lg:mr-6 mr-2">  Register</NavLink> </> ) } 
+    </> ) : (  <> <ThemeChange></ThemeChange>  
+    <NavLink to={'/login'} className="btn shadow-none border-none button-bg lg:mr-4 "> Login</NavLink>
+            </> ) } 
   </div>
 </div>
 

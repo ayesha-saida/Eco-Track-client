@@ -94,33 +94,33 @@ try {
 
   return (
     <div className='min-h-screen mx-auto'>
-    <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-[#014036]'>  
+    <form onSubmit={handleRegister} className='flex flex-col justify-center items-center pt-[50px] text-base-content'>  
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
 
   <div>
- <legend className="text-center text-lg text-[#014036]">Register your Account</legend>
+ <legend className="text-center text-lg text-base-content">Register your Account</legend>
      </div>
-  <label className="label">Name</label>
-  <input name='name' type="text" className="input" placeholder="Enter your Name" required />
+  <label className="label text-base-content">Name</label>
+  <input name='name' type="text" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Enter your Name" required />
 
-  <label className="label">Email</label>
-  <input name='email' type="email" className="input" placeholder="Enter your Email" required />
+  <label className="label text-base-content">Email</label>
+  <input name='email' type="email" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Enter your Email" required />
 
-  <label className="label">URL</label>
-  <input name='photoURL' type="text" className="input" placeholder="Enter your image URL for your profile" required />
+  <label className="label text-base-content">URL</label>
+  <input name='photoURL' type="text" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Enter your image URL for your profile" required />
 
-  <label className="label">Password</label>
-  <input name='password' type="password" className="input" placeholder="Password" required />
-  <button type='submit' className="btn button-bg mt-4">Register</button>
-<p className='text-center text-gray-500'>or</p>
+  <label className="label text-base-content">Password</label>
+  <input name='password' type="password" className="input input-bordered w-full bg-base-100 text-base-content" placeholder="Password" required />
+  <button type='submit' className="btn button-bg w-full mt-4">Register</button>
+<p className='text-center text-base-content/60 mt-2'>or</p>
  <button
           onClick={handleGoogleSignIn}
-          className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+          className="btn w-full bg-base-100 text-base-content border-base-300 mt-2"
         >
          <FcGoogle />
           Register with Google
         </button>
-  <p className='pt-2 text-center'>Already have an account? <Link to={'/login'} className='underline hover:text-blue-500'> Login </Link> </p>
+  <p className='pt-2 text-center text-base-content'>Already have an account? <Link to={'/login'} className='underline hover:text-primary'> Login </Link> </p>
 </fieldset>
 </form>
     </div>

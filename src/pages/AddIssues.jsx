@@ -55,13 +55,13 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
 
    {/* Issue Title */}
     <div className="mb-5">
-    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+    <label className="block mb-2 text-sm font-medium text-base-content">Title</label>
     <input type="text"  name="title" className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" placeholder='issue title' required />
   </div>
 
   {/* Category */}
    <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Category</label>
           <select name="category"
             className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             required
@@ -76,7 +76,7 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
 
           {/* Location */}
    <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Location</label>
           <input        
             type="text"
             name='location'
@@ -88,13 +88,13 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
 
    {/* Description */}
   <div className="mb-5">
-    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+    <label  className="block mb-2 text-sm font-medium text-base-content">Description</label>
     <textarea name="description" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Describe the issue" required />
   </div>
 
  {/* Image */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Image URL</label>
           <input       
             type="url"
              name='image'
@@ -105,7 +105,7 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
   
      {/* Suggested Fix Amount */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suggested Fix Budget</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Suggested Fix Budget</label>
           <input         
             type="number"
            name='amount'
@@ -116,7 +116,7 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
 
     {/* Status */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Status</label>
            <select name='status' className='shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ' required>
     <option value="ongoing">Ongoing</option>
     <option value="resolved">Resolved</option>
@@ -125,7 +125,7 @@ date: new Date().toISOString().split("T")[0], // only YYYY-MM-DD
    
          {/* Email (current-user mail) */}
         <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+          <label className="block mb-2 text-sm font-medium text-base-content">Email</label>
           <input
             type="email"
             value={user.email}

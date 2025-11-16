@@ -90,43 +90,43 @@ const formData = {
 
   {/*Issue Title */}
       <div className="dark mb-5">
-  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Issue Title</label>
+  <label className="block mb-2 text-sm font-medium text-base-content text-start">Issue Title</label>
   <input  type="text" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" value={title} readOnly required />
  </div>
 
   {/* Amount */}
       <div className="mb-5"> 
-   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Amount</label>
+   <label className="block mb-2 text-sm font-medium text-base-content text-start">Amount</label>
    <input type="number" name='amount' placeholder="Enter budget" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"  />
  </div>
 
  {/*Contributor name */}
      <div className="mb-5"> 
- <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Your Name</label>
+ <label className="block mb-2 text-sm font-medium text-base-content text-start">Your Name</label>
   <input name='name' type="text" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Enter your Name" required />
  </div>
 
     {/* Email (logged in user mail) */}
         <div className="mb-5">
-    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Email</label>
+    <label className="block mb-2 text-sm font-medium text-base-content text-start">Email</label>
     <input type="email" value={user.email} readOnly className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" />
      </div>
      
 {/*Contact number */}
     <div className="mb-5">
-  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Contact Number</label>
+  <label className="block mb-2 text-sm font-medium text-base-content text-start">Contact Number</label>
   <input name='phone' type="number" className=" block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Enter your Contact Number" required />
  </div>
 
 {/* Address */}
     <div className="mb-5">
-    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Address</label>
+    <label  className="block mb-2 text-sm font-medium text-base-content text-start">Address</label>
     <textarea name="address" rows="2" className=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Enter your Address" required />
  </div>
 
 {/* Additional Information */}
     <div className="mb-5">
-    <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Your message</label>
+    <label  className="block mb-2 text-sm font-medium text-base-content text-start">Your message</label>
     <textarea name="additional" rows="2" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="You can share your thoughts with us or any suggestion" required />
         </div>
 
