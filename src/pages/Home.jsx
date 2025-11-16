@@ -7,13 +7,6 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Home = () => {
   const {user} = use(AuthContext)
-   
-// const [user, setUser] = useState(null);
-
- /* useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, setUser);
-    return () => unsubscribe();
-  }, []); */
 
  if (user) {
     const uid = user.uid;

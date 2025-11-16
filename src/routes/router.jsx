@@ -5,7 +5,6 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import AddIssues from "../pages/AddIssues";
 import MyIssues from "../pages/MyIssues";
-import Issues from "../pages/Issues";
 import All_Issues from "../pages/All_Issues";
 import MyContribution from "../pages/MyContribution";
 import ErrorPage from "../pages/ErrorPage";
@@ -23,6 +22,8 @@ const router = createBrowserRouter([
    {
     path: "/",
     element: <Home />  ,
+     loader: () => fetch('https://eco-track-server-chi.vercel.app/issues'),
+     hydrateFallbackElement: <Loading />
         },
     {
     path: "/register",
@@ -42,10 +43,6 @@ const router = createBrowserRouter([
     loader: () => fetch('https://eco-track-server-chi.vercel.app/issues'),
      hydrateFallbackElement: <Loading /> 
         },
-  /* {
-    path: "/issues",
-    element: <Issues /> ,
-        }, */
          {
     path: "/all-issues",
     element: <All_Issues /> ,

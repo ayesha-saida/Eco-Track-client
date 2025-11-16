@@ -4,7 +4,7 @@ import IssueCard from '../components/IssueCard'
  
 const All_Issues = () => {
   const data = useLoaderData()
- console.log(data)
+ //console.log(data)
 const [category, setCategory] = useState(null)
 const [status, setStatus] = useState(null)
 
@@ -22,7 +22,7 @@ const [status, setStatus] = useState(null)
 <div className='flex justify-center items-center space-x-4 py-5'>
 
 <div className="dropdown dropdown-left dropdown-center"> {/*Sort category wise*/}
-  <div tabIndex={0} role="button" className="btn m-1"> 
+  <div tabIndex={0} role="button" className="btn m-1 button-bg"> 
     {category ? category : "Select Category"}
     </div>
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -35,7 +35,7 @@ const [status, setStatus] = useState(null)
 </div>
 
 <div className="dropdown dropdown-right dropdown-center"> {/*Sort status wise*/}
-  <div tabIndex={0} role="button" className="btn m-1"> 
+  <div tabIndex={0} role="button" className="btn m-1 button-bg"> 
     {status ? status : "Status"}
   </div>
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">

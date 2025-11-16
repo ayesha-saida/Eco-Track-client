@@ -29,7 +29,7 @@ const Category = () => {
     },
 ]
   return (
-    <div className='w-11/12 mx-auto '> 
+    <div className='w-11/12 mx-auto'> 
     <div className='flex justify-center items-center'>
    <h1 className='lg:text-3xl text-xl font-bold text-center text bg-color p-4 rounded'>Issue Category</h1>
     </div>

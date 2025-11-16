@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 
 const DetailCard = ({issue}) => {
      const {user} = use(AuthContext)
- const {_id,title, category, location, description, image, amount, date} = issue;
+ const {_id,title, category, location, description, image, amount, status, date} = issue;
 
    const navigate = useNavigate()
 
@@ -65,8 +65,14 @@ const formData = {
         <p className="mb-6 py-2 text-body">{description}</p>
           <p className="text-sm text-gray-500 pb-2 mt-1">Uploaded on: {date}</p>
         <div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-  <button className="button-bg p-2 btn rounded-lg" onClick={()=>document.getElementById('modal_1').showModal()}>Contribute</button>
+          
+      {/*Clicking contribute button a modal will be open*/}
+ <button className="button-bg p-2 btn rounded-lg" disabled={status === "resolved"}
+  onClick={() => status !== "resolved" && document.getElementById('modal_1').showModal()} >
+
+  {status === "resolved" ? "Resolved" : "Contribute"}
+ </button>
+
   <dialog id="modal_1" className="modal">
   
   <div className="modal-box">
@@ -83,27 +89,27 @@ const formData = {
 
 
   {/*Issue Title */}
-      <div className="mb-5">
+      <div className="dark mb-5">
   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Issue Title</label>
-  <input  type="text" className="input block w-full p-2.5" value={title} readOnly required />
+  <input  type="text" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" value={title} readOnly required />
  </div>
 
   {/* Amount */}
       <div className="mb-5"> 
    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Amount</label>
-   <input type="number" name='amount' placeholder="Enter budget" className="input block w-full p-2.5"  />
+   <input type="number" name='amount' placeholder="Enter budget" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"  />
  </div>
 
  {/*Contributor name */}
      <div className="mb-5"> 
  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Your Name</label>
-  <input name='name' type="text" className="input block w-full p-2.5" placeholder="Enter your Name" required />
+  <input name='name' type="text" className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Enter your Name" required />
  </div>
 
     {/* Email (logged in user mail) */}
         <div className="mb-5">
     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Email</label>
-    <input type="email" value={user.email} readOnly className="input block w-full p-2.5" />
+    <input type="email" value={user.email} readOnly className="input block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" />
      </div>
      
 {/*Contact number */}
