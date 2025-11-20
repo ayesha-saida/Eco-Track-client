@@ -2,8 +2,6 @@
 
 **Eco Track** is a full-stack **MERN** (MongoDB, Express.js, React.js, Node.js) application that empowers users to report, track, and contribute to resolving environmental and cleanliness-related issues in their local community. The platform allows users to stay informed, participate in cleanup drives, and manage contributions effectively.
 
----
-**Live Link:** https://eco-track-by-ayesha.netlify.app
 
 --
 ## Features
@@ -45,13 +43,6 @@
 
 ---
 
-## Future Enhancements
 
-- Real-time notifications for updates on contributed issues.
-- Community leaderboard for top contributors.
-- Integration with maps to visualize issue locations.
-- Mobile-friendly responsive design.
-
----
 
 
