@@ -1,16 +1,11 @@
 import React from 'react'
 
-const Cards = ({ image, title, description }) => {
- // const img = images
+const Cards = ({title, description }) => {
   return (
    
-   <div className="card w-70 bg-[#8aeb60] hover:shadow-xl/40">
-  <figure>
-    <img
-      src={image}
-      alt="img" />
-  </figure>
-  <div className="card-body">
+   <div className="card w-70  hover:shadow-[-0_6px_12px_rgba(0,0,0,0.4)]">
+  
+  <div className="card-body shadow-lg rounded-xl">
     <h2 className="card-title">{title}</h2>
     <p>{description}</p>
 
